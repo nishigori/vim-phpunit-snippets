@@ -1,0 +1,146 @@
+include PHPUnit.snip
+include Selenium.snip
+
+# Basic
+
+snippet     TestClass
+abbr        Class extends PHPUnit_Extensions_SeleniumTestCase
+alias       testclass
+	require_once 'PHPUnit/Extensions/SeleniumTestCase.php';
+	
+	/**
+	 * ${1}
+	 */
+	class ${2:`expand("%:r")`} extends ${3:PHPUnit_Extensions_SeleniumTestCase}
+	{
+		protected function setUp()
+		{
+			${0:# code ...}
+		}
+	}
+
+snippet     suite
+abbr        return PHPUnit_Framework_TestSuite
+	$this->suite(${0:className});
+
+snippet     run
+abbr        Runs the test case and collects the results in a TestResult object.
+	$this->run(${0:PHPUnit_Framework_TestResult $result = NULL});
+
+snippet     getDriver
+abbr        return PHPUnit_Extensions_SeleniumTestCase_Driver
+	$this->getDriver(${0:array $browser});
+
+snippet     runTest
+abbr        @throws RuntimeException
+	$this->runTest();
+
+snippet     toString
+abbr        Returns a string representation of the test case.
+	$this->toString();
+
+snippet     runSelenese
+abbr        Runs a test from a Selenese (HTML) specification.
+	$this->runSelenese(${1:filename});
+
+
+# Assertion
+
+snippet     assertElementValueEquals
+abbr        Asserts that an element's value is equal to a given string.
+alias       aElementValueEquals
+	$this->assertElementValueEquals(${1:locator}, ${2:text}, ${3:message = ''});
+
+snippet     assertElementValueNotEquals
+abbr        Asserts that an element's value is not equal to a given string.
+alias       aElementValueNotEquals
+	$this->assertElementValueNotEquals(${1:locator}, ${2:text}, ${3:message = ''});
+
+snippet     assertElementValueContains
+abbr        Asserts that an element's value contains a given string.
+alias       aElementValueContains
+	$this->assertElementValueContains(${1:locator}, ${2:text}, ${3:message = ''});
+
+snippet     assertElementValueNotContains
+abbr        Asserts that an element's value does not contain a given string.
+alias       aElementValueNotContains
+	$this->assertElementValueNotContains(${1:locator}, ${2:text}, ${3:message = ''});
+
+snippet     assertElementContainsText
+abbr        Asserts that an element contains a given string.
+alias       aElementContainsText
+	$this->assertElementContainsText(${1:locator}, ${2:text}, ${3:message = ''});
+
+snippet     assertElementNotContainsText
+abbr        Asserts that an element does not contain a given string.
+alias       aElementNotContainsText
+	$this->assertElementNotContainsText(${1:locator}, ${2:text}, ${3:message = ''});
+
+snippet     assertSelectHasOption
+abbr        Asserts that a select element has a specific option.
+alias       aSelectHasOption
+	$this->assertSelectHasOption(${1:selectLocator}, ${2:option}, ${3:message = ''});
+
+snippet     assertSelectNotHasOption
+abbr        Asserts that a select element does not have a specific option.
+alias       aSelectNotHasOption
+	$this->assertSelectNotHasOption(${1:selectLocator}, ${2:option}, ${3:message = ''});
+
+snippet     assertSelected
+abbr        Asserts that a specific label is selected.
+alias       aSelected
+	$this->assertSelected(${1:selectLocator}, ${2:option}, ${3:message = ''});
+
+snippet     assertNotSelected
+abbr        Asserts that a specific label is not selected.
+alias       aSelected
+	$this->assertNotSelected(${1:selectLocator}, ${2:option}, ${3:message = ''});
+
+snippet     assertIsSelected
+abbr        Asserts that a specific value is selected.
+alias       aIsSelected
+	$this->assertIsSelected(${1:selectLocator}, ${2:value}, ${3:message = ''});
+
+snippet     assertIsNotSelected
+abbr        Asserts that a specific value is not selected.
+alias       aIsNotSelected
+	$this->assertIsNotSelected(${1:selectLocator}, ${2:value}, ${3:message = ''});
+
+# @since  Method available since Release 3.1.0
+snippet     defaultAssertions
+abbr        Template Method that is called after Selenium actions.
+alias       dAssertions
+	$this->defaultAssertions(${0:action});
+
+# @since  Method available since Release 3.2.0
+snippet     getCodeCoverage
+	$this->getCodeCoverage();
+
+# @since  Method available since Release 3.2.9
+snippet     matchLocalAndRemotePaths
+	$this->matchLocalAndRemotePaths(${0:array $coverage});
+
+# @since  Method available since Release 3.2.9
+snippet     findDirectorySeparator
+alias       fDirectorySeparator
+	$this->findDirectorySeparator(${0:path});
+
+# @since  Method available since Release 3.2.9
+snippet     explodeDirectories
+alias       eDirectories
+	$this->explodeDirectories(${0:path});
+
+# @since  Method available since Release 1.0.0
+snippet     getSeleneseFiles
+abbr        static function
+	$this->getSeleneseFiles(${1:directory}, ${2:suffix});
+
+# @since  Method available since Release 3.2.0
+snippet     runDefaultAssertions
+	$this->runDefaultAssertions(${0:action});
+
+# @since  Method available since Release 3.4.0
+snippet     onNotSuccessfulTest
+abbr        This method is called when a test method did not execute successfully.
+	$this->onNotSuccessfulTest(${0:Exception $e});
+

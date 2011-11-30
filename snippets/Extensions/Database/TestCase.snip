@@ -1,0 +1,14 @@
+include PHPUnit.snip
+
+# Assertion
+
+snippet     assertTablesEqual
+abbr        Asserts that two given datasets are equal
+alias       aTableEqual
+	PHPUnit_Extensions_Database_TestCase::assertTablesEqual(${1:PHPUnit_Extensions_Database_DataSet_ITable $expected}, ${2:PHPUnit_Extensions_Database_DataSet_ITable $actual}, ${3:$message = ''});
+
+snippet     assertDataSetsEqual
+abbr        Asserts that two given datasets are equal
+alias       aDataSetsEqual
+	PHPUnit_Extensions_Database_TestCase::assertDataSetsEqual(${1:PHPUnit_Extensions_Database_DataSet_IDataSet $expected}, ${2:PHPUnit_Extensions_Database_DataSet_IDataSet $actual}, ${3:$message = ''});
+

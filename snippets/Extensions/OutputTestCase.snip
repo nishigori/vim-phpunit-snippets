@@ -1,0 +1,30 @@
+include PHPUnit.snip
+
+# Basic
+
+snippet     setOutputCallback
+	$this->setOutputCallback(${0:$callback});
+
+snippet     normalizeOutput
+	$this->normalizeOutput(${0:$buffer});
+
+snippet     getActualOutput
+	$this->getActualOutput();
+
+snippet     expectedRegex
+	$this->expectedRegex();
+
+snippet     expectOutputRegex
+	$this->expectOutputRegex(${0:$expectedRegex});
+
+snippet     expectedString
+	$this->expectedString();
+
+snippet     expectedString
+	$this->expectOutputString(${0:$expectedString});
+
+delete runTest
+
+snippet     runTest
+alias		run
+	$this->runTest();
