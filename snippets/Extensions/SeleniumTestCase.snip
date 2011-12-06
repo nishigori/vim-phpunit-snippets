@@ -1,7 +1,13 @@
 include PHPUnit.snip
-include Selenium.snip
+
+# http://pear.php.net/package/Testing_Selenium/docs/latest/li_Testing_Selenium.html
+# http://release.seleniumhq.org/selenium-remote-control/1.0-beta-2/doc/php/elementindex_Selenium.html
+# http://static.browsermob.com/api/com/browsermob/api/Selenium.html
+
+### PHPUnit_Extensions_SeleniumTestCase ###
 
 # Basic
+#######
 
 snippet     TestClass
 abbr        Class extends PHPUnit_Extensions_SeleniumTestCase
@@ -44,103 +50,881 @@ abbr        Runs a test from a Selenese (HTML) specification.
 	$this->runSelenese(${1:filename});
 
 
-# Assertion
+# Assertions
+############
 
 snippet     assertElementValueEquals
 abbr        Asserts that an element's value is equal to a given string.
 alias       aElementValueEquals
-	$this->assertElementValueEquals(${1:locator}, ${2:text}, ${3:message = ''});
+	$this->assertElementValueEquals(${1:String locator}, ${2:String text}, ${3:String message = ''});
 
 snippet     assertElementValueNotEquals
 abbr        Asserts that an element's value is not equal to a given string.
 alias       aElementValueNotEquals
-	$this->assertElementValueNotEquals(${1:locator}, ${2:text}, ${3:message = ''});
+	$this->assertElementValueNotEquals(${1:String locator}, ${2:String text}, ${3:String message = ''});
 
 snippet     assertElementValueContains
 abbr        Asserts that an element's value contains a given string.
 alias       aElementValueContains
-	$this->assertElementValueContains(${1:locator}, ${2:text}, ${3:message = ''});
+	$this->assertElementValueContains(${1:String locator}, ${2:String text}, ${3:String message = ''});
 
 snippet     assertElementValueNotContains
 abbr        Asserts that an element's value does not contain a given string.
 alias       aElementValueNotContains
-	$this->assertElementValueNotContains(${1:locator}, ${2:text}, ${3:message = ''});
+	$this->assertElementValueNotContains(${1:String locator}, ${2:String text}, ${3:String message = ''});
 
 snippet     assertElementContainsText
 abbr        Asserts that an element contains a given string.
 alias       aElementContainsText
-	$this->assertElementContainsText(${1:locator}, ${2:text}, ${3:message = ''});
+	$this->assertElementContainsText(${1:String locator}, ${2:String text}, ${3:String message = ''});
 
 snippet     assertElementNotContainsText
 abbr        Asserts that an element does not contain a given string.
 alias       aElementNotContainsText
-	$this->assertElementNotContainsText(${1:locator}, ${2:text}, ${3:message = ''});
+	$this->assertElementNotContainsText(${1:String locator}, ${2:String text}, ${3:String message = ''});
 
 snippet     assertSelectHasOption
 abbr        Asserts that a select element has a specific option.
 alias       aSelectHasOption
-	$this->assertSelectHasOption(${1:selectLocator}, ${2:option}, ${3:message = ''});
+	$this->assertSelectHasOption(${1:String selectLocator}, ${2:String optionString}, ${3:String message = ''});
 
 snippet     assertSelectNotHasOption
 abbr        Asserts that a select element does not have a specific option.
 alias       aSelectNotHasOption
-	$this->assertSelectNotHasOption(${1:selectLocator}, ${2:option}, ${3:message = ''});
+	$this->assertSelectNotHasOption(${1:String selectLocator}, ${2:String optionString}, ${3:String message = ''});
 
 snippet     assertSelected
 abbr        Asserts that a specific label is selected.
 alias       aSelected
-	$this->assertSelected(${1:selectLocator}, ${2:option}, ${3:message = ''});
+	$this->assertSelected(${1:String selectLocator}, ${2:String optionString}, ${3:String message = ''});
 
 snippet     assertNotSelected
 abbr        Asserts that a specific label is not selected.
 alias       aSelected
-	$this->assertNotSelected(${1:selectLocator}, ${2:option}, ${3:message = ''});
+	$this->assertNotSelected(${1:String selectLocator}, ${2:String optionString}, ${3:String message = ''});
 
 snippet     assertIsSelected
 abbr        Asserts that a specific value is selected.
 alias       aIsSelected
-	$this->assertIsSelected(${1:selectLocator}, ${2:value}, ${3:message = ''});
+	$this->assertIsSelected(${1:String selectLocator}, ${2:String value}, ${3:String message = ''});
 
 snippet     assertIsNotSelected
 abbr        Asserts that a specific value is not selected.
 alias       aIsNotSelected
-	$this->assertIsNotSelected(${1:selectLocator}, ${2:value}, ${3:message = ''});
+	$this->assertIsNotSelected(${1:String selectLocator}, ${2:String value}, ${3:String message = ''});
 
 # @since  Method available since Release 3.1.0
 snippet     defaultAssertions
 abbr        Template Method that is called after Selenium actions.
 alias       dAssertions
-	$this->defaultAssertions(${0:action});
+	$this->defaultAssertions(${0:String action});
 
+
+# Another
+#########
 # @since  Method available since Release 3.2.0
 snippet     getCodeCoverage
 	$this->getCodeCoverage();
 
 # @since  Method available since Release 3.2.9
 snippet     matchLocalAndRemotePaths
-	$this->matchLocalAndRemotePaths(${0:array $coverage});
+	$this->matchLocalAndRemotePaths(${0:Array coverage});
 
 # @since  Method available since Release 3.2.9
 snippet     findDirectorySeparator
 alias       fDirectorySeparator
-	$this->findDirectorySeparator(${0:path});
+	$this->findDirectorySeparator(${0:String path});
 
 # @since  Method available since Release 3.2.9
 snippet     explodeDirectories
 alias       eDirectories
-	$this->explodeDirectories(${0:path});
+	$this->explodeDirectories(${0:String path});
 
 # @since  Method available since Release 1.0.0
 snippet     getSeleneseFiles
 abbr        static function
-	$this->getSeleneseFiles(${1:directory}, ${2:suffix});
+	$this->getSeleneseFiles(${1:String directory}, ${2:String suffix});
 
 # @since  Method available since Release 3.2.0
 snippet     runDefaultAssertions
-	$this->runDefaultAssertions(${0:action});
+	$this->runDefaultAssertions(${0:String action});
 
 # @since  Method available since Release 3.4.0
 snippet     onNotSuccessfulTest
 abbr        This method is called when a test method did not execute successfully.
 	$this->onNotSuccessfulTest(${0:Exception $e});
+
+
+
+### Selenium IDE ###
+
+# Actions
+#########
+
+## Mouse Actions
+################
+
+snippet    click
+	$this->click(${0:String locator});
+
+snippet    clickAndWait
+	$this->clickAndWait(${0:String locator});
+
+snippet    clickAt
+	$this->clickAt(${1:String locator}, ${2:String coordString});
+
+snippet    clickAtAndWait
+	$this->clickAtAndWait(${1:String locator}, ${2:String coordString});
+
+snippet    doubleClick
+	$this->doubleClick(${0:String locator});
+
+snippet    doubleClickAndWait
+	$this->doubleClickAndWait(${0:String locator});
+
+snippet    doubleClickAt
+	$this->doubleClickAt(${1:String locator}, ${2:String coordString});
+
+snippet    doubleClickAtAndWait
+	$this->doubleClickAtAndWait(${0:String locator}, ${2:String coordString});
+
+snippet    mouseDown
+	$this->mouseDown(${0:String locator});
+
+snippet    mouseDownAndWait
+	$this->mouseDownAndWait(${0:String locator});
+
+snippet    mouseDownAt
+	$this->mouseDownAt(${1:String locator}, ${2:String coordString});
+
+snippet    mouseDownAtAndWait
+	$this->mouseDownAtAndWait(${1:String locator}, ${2:String coordString});
+
+snippet    mouseMove
+	$this->mouseMove(${0:String locator});
+
+snippet    mouseMoveAndWait
+	$this->mouseMoveAndWait(${0:String locator});
+
+snippet    mouseMoveAt
+	$this->mouseMoveAt(${1:String locator}, ${2:String coordString});
+
+snippet    mouseMoveAtAndWait
+	$this->mouseMoveAtAndWait(${1:String locator}, ${2:String coordString});
+
+snippet    mouseOut
+	$this->mouseOut(${0:String locator});
+
+snippet    mouseOutAndWait
+	$this->mouseOutAndWait(${0:String locator});
+
+snippet    mouseOver
+	$this->mouseOver(${0:String locator});
+
+snippet    mouseOverAndWait
+	$this->mouseOverAndWait(${0:String locator});
+
+snippet    mouseUp
+	$this->mouseUp(${0:String locator});
+
+snippet    mouseUpAndWait
+	$this->mouseUpAndWait(${0:String locator});
+
+snippet    mouseUpAt
+	$this->mouseUpAt(${1:String locator}, ${2:String coordString});
+
+snippet    mouseUpAtAndWait
+	$this->mouseUpAtAndWait(${1:String locator}, ${2:String coordString});
+
+snippet    mouseUpRight
+	$this->mouseUpRight(${0:String locator});
+
+snippet    mouseUpRightAndWait
+	$this->mouseUpRightAndWait(${0:String locator});
+
+snippet    mouseUpRightAt
+	$this->mouseUpRightAt(${1:String locator}, ${2:String coordString});
+
+snippet    mouseUpRightAtAndWait
+	$this->mouseUpRightAtAndWait(${1:String locator}, ${2:String coordString});
+
+snippet    contextMenu
+	$this->contextMenu(${0:String locator});
+
+snippet    contextMenuAndWait
+	$this->contextMenuAndWait(${0:String locator});
+
+snippet    contextMenuAt
+	$this->contextMenuAt(${1:String locator}, ${2:String coordString});
+
+snippet    contextMenuAtAndWait
+	$this->contextMenuAtAndWait(${1:String locator}, ${2:String coordString});
+
+snippet    setContext
+	$this->setContext(${0:String context});
+
+
+## Mouse Actions (Drag & Drop)
+##############################
+
+snippet    dragAndDrop
+	$this->dragAndDrop(${1:String locator}, ${2:String movementsString});
+
+snippet    dragAndDropAndWait
+	$this->dragAndDropAndWait(${1:String locator}, ${2:String movementsString});
+
+snippet    dragAndDropToObject
+	$this->dragAndDropToObject(${1:String $locatorOfObjectToBeDragged}, ${2:String locatorOfDragDestinationObject});
+
+snippet    dragAndDropToObjectAndWait
+	$this->dragAndDropToObjectAndWait(${1:String $locatorOfObjectToBeDragged}, ${2:String locatorOfDragDestinationObject});
+
+snippet    dragDrop
+	$this->dragDrop(${1:String locator}, ${2:String movementsString});
+
+snippet    dragDropAndWait
+	$this->dragDropAndWait(${1:String locator}, ${2:String movementsString});
+
+# Configure the number of pixels between "mousemove" events during dragAndDrop commands (default=10)
+snippet    setMouseSpeed
+	$this->setMouseSpeed(${0:String pixels});
+
+snippet    setMouseSpeedAndWait
+	$this->setMouseSpeedAndWait(${0:String pixels});
+
+snippet    getMouseSpeed
+	$this->getMouseSpeed();
+
+
+## Keyboard Actions
+###################
+
+snippet    altKeyDown
+	$this->altKeyDown();
+
+snippet    altKeyDownAndWait
+	$this->altKeyDownAndWait();
+
+snippet    altKeyUp
+	$this->altKeyUp();
+
+snippet    altKeyUpAndWait
+	$this->altKeyUpAndWait();
+
+snippet    controlKeyDown
+	$this->controlKeyDown();
+
+snippet    controlKeyDownAndWait
+	$this->controlKeyDownAndWait();
+
+snippet    controlKeyUp
+	$this->controlKeyUp();
+
+snippet    controlKeyUpAndWait
+	$this->controlKeyUpAndWait();
+
+snippet    metaKeyDown
+	$this->metaKeyDown();
+
+snippet    metaKeyDownAndWait
+	$this->metaKeyDownAndWait();
+
+snippet    metaKeyUp
+	$this->metaKeyUp();
+
+snippet    metaKeyUpAndWait
+	$this->metaKeyUpAndWait();
+
+snippet    shiftKeyDown
+	$this->shiftKeyDown();
+
+snippet    shiftKeyDownAndWait
+	$this->shiftKeyDownAndWait();
+
+snippet    shiftKeyUp
+	$this->shiftKeyUp();
+
+snippet    shiftKeyUpAndWait
+	$this->shiftKeyUpAndWait();
+
+snippet    keyDown
+	$this->keyDown(${1:String locator}, ${2:String keySequence});
+
+snippet    keyDownAndWait
+	$this->keyDownAndWait(${1:String locator}, ${2:String keySequence});
+
+snippet    keyDownNative
+	$this->keyDownNative(${0:String keycode});
+
+snippet    keyDownNativeAndWait
+	$this->keyDownNativeAndWait(${0:String keycode});
+
+snippet    keyPress
+	$this->keyPress(${1:String locator}, ${2:String keySequence});
+
+snippet    keyPressAndWait
+	$this->keyPressAndWait(${1:String locator}, ${2:String keySequence});
+
+snippet    keyPressNative
+	$this->keyPressNative(${0:String keycode});
+
+snippet    keyPressNativeAndWait
+	$this->keyPressNativeAndWait(${0:String keycode});
+
+snippet    keyUp
+	$this->keyUp(${1:String locator}, ${2:String keySequence});
+
+snippet    keyUpAndWait
+	$this->keyUpAndWait(${1:String locator}, ${2:String keySequence});
+
+snippet    keyUpNative
+	$this->keyUpNative(${0:String keycode});
+
+snippet    keyUpNativeAndWait
+	$this->keyUpNativeAndWait(${0:String keycode});
+
+
+## Window Operations
+####################
+
+snippet    open
+	$this->open(${0:String url});
+
+snippet    openWindow
+	$this->openWindow(${1:String url}, ${2:String windowID});
+
+snippet    openWindowAndWait
+	$this->openWindowAndWait(${1:String url}, ${2:String windowID});
+
+snippet    selectFrame
+	$this->selectFrame(${0:String locator});
+
+snippet    selectPopUp
+	$this->selectPopUp(${0:String windowID});
+
+snippet    selectPopUpAndWait
+	$this->selectPopUpAndWait(${0:String windowID});
+
+snippet    selectWindow
+	$this->selectWindow(${0:String windowID});
+
+snippet    close
+	$this->close();
+
+# PHPUnit '3.6.4'
+# funtion is nox exist 'closeAndWait'
+#snippet    closeAndWait
+#	$this->closeAndWait();
+
+snippet    deselectPopUp
+	$this->deselectPopUp();
+
+snippet    deselectPopUpAndWait
+	$this->deselectPopUpAndWait();
+
+snippet    goBack
+	$this->goBack();
+
+snippet    goBackAndWait
+	$this->goBackAndWait();
+
+snippet    refresh
+	$this->refresh();
+
+snippet    refreshAndWait
+	$this->refreshAndWait();
+
+snippet    windowFocus
+	$this->windowFocus();
+
+snippet    windowMaximize
+	$this->windowMaximize();
+
+
+## Text Inputs & Form Operations
+################################
+
+snippet    focus
+	$this->focus(${0:String locator});
+
+snippet    focusAndWait
+	$this->focusAndWait(${0:String locator});
+
+snippet    setCursorPosition
+	$this->setCursorPosition(${1:String locator}, ${2:position});
+
+snippet    setCursorPositionAndWait
+	$this->setCursorPositionAndWait(${1:String locator}, ${2:position});
+
+snippet    type
+	$this->type(${1:String locator}, ${2:String value});
+
+snippet    typeAndWait
+	$this->typeAndWait(${1:String locator}, ${2:String value});
+
+snippet    typeKeys
+	$this->typeKeys(${1:String locator}, ${2:String value});
+
+snippet    typeKeysAndWait
+	$this->typeKeysAndWait(${1:String locator}, ${2:String value});
+
+snippet    addSelection
+	$this->addSelection(${1:String locator}, ${2:String optionLocator});
+
+snippet    addSelectionAndWait
+	$this->addSelectionAndWait(${1:String locator}, ${2:String optionLocator});
+
+snippet    removeSelection
+	$this->removeSelection(${1:String locator}, ${2:String optionLocator});
+
+snippet    removeSelectionAndWait
+	$this->removeSelectionAndWait(${1:String locator}, ${2:String optionLocator});
+
+snippet    removeAllSelections
+	$this->removeAllSelections(${0:String locator});
+
+snippet    removeAllSelectionsAndWait
+	$this->removeAllSelectionsAndWait(${0:String locator});
+
+# Check a toggle-button (checkbox/radio)
+snippet    check
+	$this->check(${0:String locator});
+
+snippet    checkAndWait
+	$this->checkAndWait(${0:String locator});
+
+snippet    uncheck
+	$this->uncheck(${0:String locator});
+
+snippet    uncheckAndWait
+	$this->uncheckAndWait(${0:String locator});
+
+snippet    select
+	$this->select(${1:String selectLocator}, ${2:String optionLocator});
+
+snippet    selectAndWait
+	$this->selectAndWait(${1:String selectLocator}, ${2:String optionLocator});
+
+snippet    submit
+	$this->submit(${0:String formLocator});
+
+snippet    submitAndWait
+	$this->submitAndWait(${0:String formLocator});
+
+
+## Cookies
+##########
+
+snippet    createCookie
+	$this->createCookie(${1:String nameValuePair}, ${2:String optionsString});
+
+snippet    createCookieAndWait
+	$this->createCookieAndWait(${1:String nameValuePair}, ${2:String optionsString});
+
+snippet    deleteAllVisibleCookies
+	$this->deleteAllVisibleCookies();
+
+snippet    deleteAllVisibleCookiesAndWait
+	$this->deleteAllVisibleCookiesAndWait();
+
+snippet    deleteCookie
+	$this->deleteCookie(${1:String name}, ${2:String optionsString});
+
+snippet    deleteCookieAndWait
+	$this->deleteCookieAndWait(${1:String name}, ${2:String optionsString});
+
+snippet    getCookie
+	$this->getCookie();
+
+snippet    getCookieByName
+	$this->getCookieByName(${0:String name});
+
+snippet    isCookiePresent
+	$this->isCookiePresent(${0:String cookie});
+
+
+## Image Captures
+#################
+
+snippet    captureEntirePageScreenshot
+abbr       capEntirePageScreenshot, capturePng
+	$this->captureEntirePageScreenshot();
+
+snippet    captureEntirePageScreenshotAndWait
+	$this->captureEntirePageScreenshotAndWait();
+
+snippet    captureEntirePageScreenshotToStringAndWait
+	$this->captureEntirePageScreenshotToStringAndWait();
+
+snippet    captureScreenshotAndWait
+	$this->captureScreenshotAndWait();
+
+snippet    captureScreenshotToStringAndWait
+	$this->captureScreenshotToStringAndWait();
+
+
+## Another Operations
+#####################
+
+snippet    waitForPageToLoad
+	$this->waitForPageToLoad(${0:String timeout});
+
+snippet    waitForPopUp
+	$this->waitForPopUp(${1:String windowID}, ${2:String timeout});
+
+snippet    waitForCondition
+	$this->waitForCondition(${1:String script}, ${2:String timeout});
+
+# PHPUnit '3.6.4'
+# funtion is nox exist 'waitForFrameToLoad'
+# INFO: Runs the specified JavaScript snippet repeatedly until it evaluates to "true"
+snippet    waitForFrameToLoad
+	$this->waitForFrameToLoad(${1:String script}, ${2:String timeout});
+
+snippet    fireEvent
+	$this->fireEvent(${1:String locator}, ${2:String eventName});
+
+snippet    fireEventAndWait
+	$this->fireEventAndWait(${1:String locator}, ${2:String eventName});
+
+snippet    runScript
+	$this->runScript(${0:String script});
+
+snippet    runScriptAndWait
+	$this->runScriptAndWait(${0:String script});
+
+
+## Prompt Operation Settings
+############################
+
+snippet    answerOnNextPrompt
+	$this->answerOnNextPrompt(${0:String answer});
+
+# PHPUnit '3.6.4'
+# funtion is nox exist 'answerOnNextPromptAndWait'
+#snippet    answerOnNextPromptAndWait
+#	$this->answerOnNextPromptAndWait(${0:String answer});
+
+# By default, Selenium's overridden window.confirm() function will return true,
+# as if the user had manually clicked OK; after running this command,
+# the next call to confirm() will return false, as if the user had clicked Cancel.
+# Selenium will then resume using the default behavior for future confirmations,
+# automatically returning true (OK) unless/until you explicitly call this command for each confirmation.
+snippet    chooseCancelOnNextConfirmation
+abbr       cCancelOnNextConfirmation
+	$this->chooseCancelOnNextConfirmation();
+
+# Note: This command assumes that it causes a page to load and, in turn,
+# waits for it to complete loading before returning
+snippet    chooseCancelOnNextConfirmationAndWait
+abbr       cCancelOnNextConfirmationAndWait
+	$this->chooseCancelOnNextConfirmationAndWait();
+
+snippet    chooseOkOnNextConfirmation
+abbr       cOkOnNextConfirmation
+	$this->chooseOkOnNextConfirmation();
+
+snippet    chooseOkOnNextConfirmationAndWait
+abbr       cOkOnNextConfirmationAndWait
+	$this->chooseOkOnNextConfirmationAndWait();
+
+
+## Test Action Controls
+#######################
+
+snippet    setSpeed
+	$this->setSpeed(${0:String value});
+
+snippet    setSpeedAndWait
+	$this->setSpeedAndWait(${0:String value});
+
+# PHPUnit '3.6.4'
+# funtion is nox exist 'setTimeout'
+#snippet    setTimeout
+#	$this->setTimeout(${0:String timeout});
+
+snippet    pause
+	$this->pause(${0:String waitTime});
+
+# Driver.php Driver::__call()
+snippet    break
+	$this->break();
+
+
+## Debug
+########
+
+snippet    echo
+	$this->echo(${0:String message});
+
+snippet    highlight
+	$this->highlight(${0:String locator});
+
+snippet    highlightAndWait
+	$this->highlightAndWait(${0:String locator});
+
+snippet    assignId
+	$this->assignId(${1:String locator}, ${2:String identifier});
+
+snippet    assignIdAndWait
+	$this->assignIdAndWait(${1:String locator}, ${2:String identifier});
+
+
+## Selenium Settings
+####################
+
+snippet    allowNativeXpath
+	$this->allowNativeXpath(${0:String allow});
+
+snippet    allowNativeXpathAndWait
+	$this->allowNativeXpathAndWait(${0:String allow});
+
+snippet    useXpathLibrary
+	$this->useXpathLibrary(${0:String ajaxslt|javascript-xpath|default});
+
+snippet    useXpathLibraryAndWait
+	$this->useXpathLibraryAndWait(${0:String libraryName});
+
+snippet    setBrowserLogLevel
+	$this->setBrowserLogLevel(${0:String logLevel});
+
+snippet    setBrowserLogLevelAndWait
+	$this->setBrowserLogLevelAndWait(${0:String logLevel});
+
+
+## Another
+##########
+
+snippet    store
+	$this->store(${1:String expression}, ${2:String variableName});
+
+snippet    rollup
+	$this->rollup(${1:String rollupName}, ${2:String kwargs});
+
+snippet    rollupAndWait
+	$this->rollupAndWait(${1:String rollupName}, ${2:String kwargs});
+
+snippet    addLocationStrategy
+	$this->addLocationStrategy(${1:String strategyName}, ${2:String functionDefinition});
+
+snippet    addLocationStrategyAndWait
+	$this->addLocationStrategyAndWait(${1:String strategyName}, ${2:String functionDefinition});
+
+snippet    addScript
+	$this->addScript(${1:String scriptContent}, ${2:String scriptTagId});
+
+snippet    addScriptAndWait
+	$this->addScriptAndWait(${1:String scriptContent}, ${2:String scriptTagId});
+
+snippet    attachFile
+	$this->attachFile(${1:String fieldLocator}, ${2:String fileLocator});
+
+
+
+# Accessors
+###########
+
+snippet    getAlert
+	$this->getAlert();
+
+snippet    getAllButtons
+	$this->getAllButtons();
+
+snippet    getAllFields
+	$this->getAllFields();
+
+snippet    getAllLinks
+	$this->getAllLinks();
+
+snippet    getAllWindowIds
+	$this->getAllWindowIds();
+
+snippet    getAllWindowNames
+	$this->getAllWindowNames();
+
+snippet    getAllWindowTitles
+	$this->getAllWindowTitles();
+
+snippet    getAttribute
+	$this->getAttribute(${0:String attributeLocator});
+
+snippet    getAttributeFromAllWindows
+	$this->getAttributeFromAllWindows(${0:String attributeName});
+
+snippet    getBodyText
+	$this->getBodyText();
+
+snippet    getConfirmation
+	$this->getConfirmation();
+
+snippet    isConfirmationPresent
+abbr       Has confirm() been called? 
+	$this->isConfirmationPresent();
+
+snippet    getWhetherThisFrameMatchFrameExpression
+	$this->getWhetherThisFrameMatchFrameExpression(${1:String currentFrameString}, ${2:String target});
+
+snippet    getWhetherThisWindowMatchWindowExpression
+	$this->getWhetherThisWindowMatchWindowExpression(${1:String currentWindowString}, ${2:String target});
+
+snippet    getCursorPosition
+	$this->getCursorPosition(${0:String locator});
+
+snippet    getElementHeight
+	$this->getElementHeight(${0:String locator});
+
+snippet    getElementIndex
+	$this->getElementIndex(${0:String locator});
+
+snippet    getElementPositionLeft
+	$this->getElementPositionLeft(${0:String locator});
+
+snippet    getElementPositionTop
+	$this->getElementPositionTop(${0:String locator});
+
+snippet    getElementWidth
+	$this->getElementWidth(${0:String locator});
+
+snippet    getEval
+	$this->getEval(${0:String script});
+
+snippet    getExpression
+	$this->getExpression(${0:String expression});
+
+snippet    getHtmlSource
+	$this->getHtmlSource();
+
+snippet    getLocation
+	$this->getLocation();
+
+snippet    getLogMessages
+	$this->getLogMessages();
+
+snippet    getPrompt
+	$this->getPrompt();
+
+snippet    getSelectOptions
+	$this->getSelectOptions(${0:String selectLocator});
+
+snippet    getSelectedId
+	$this->getSelectedId(${0:String selectLocator});
+
+snippet    getSelectedIds
+	$this->getSelectedIds(${0:String selectLocator});
+
+snippet    getSelectedIndex
+	$this->getSelectedIndex(${0:String selectLocator});
+
+snippet    getSelectedIndexes
+	$this->getSelectedIndexes(${0:String selectLocator});
+
+snippet    getSelectedLabel
+	$this->getSelectedLabel(${0:String selectLocator});
+
+snippet    getSelectedLabels
+	$this->getSelectedLabels(${0:String selectLocator});
+
+snippet    getSelectedValue
+	$this->getSelectedValue(${0:String selectLocator});
+
+snippet    getSelectedValues
+	$this->getSelectedValues(${0:String selectLocator});
+
+snippet    getSpeed
+	$this->getSpeed();
+
+snippet    getSpeedAndWait
+	$this->getSpeedAndWait();
+
+snippet    getTable
+	$this->getTable(${0:String tableCellAddress});
+
+snippet    getText
+	$this->getText(${0:String locator});
+
+snippet    getTitle
+	$this->getTitle();
+
+snippet    getValue
+	$this->getValue(${0:String locator});
+
+snippet    getXpathCount
+	$this->getXpathCount(${0:String xpath});
+
+snippet    ignoreAttributesWithoutValue
+	$this->ignoreAttributesWithoutValue(${0:String ignore});
+
+snippet    ignoreAttributesWithoutValueAndWait
+	$this->ignoreAttributesWithoutValueAndWait(${0:String ignore});
+
+snippet    isAlertPresent
+abbr       Has an alert occurred?
+	$this->isAlertPresent();
+
+snippet    isChecked
+	$this->isChecked(${0:String locator});
+
+snippet    isEditable
+	$this->isEditable(${0:String locator});
+
+snippet    isElementPresent
+	$this->isElementPresent(${0:String locator});
+
+snippet    isOrdered
+	$this->isOrdered(${1:String locator1}, ${2:String locator2});
+
+snippet    isPromptPresent
+abbr       Has a prompt occurred?
+	$this->isPromptPresent();
+
+snippet    isSomethingSelected
+	$this->isSomethingSelected(${0:String selectLocator});
+
+snippet    isTextPresent
+	$this->isTextPresent(${0:String textPattern});
+
+snippet    isVisible
+	$this->isVisible(${0:String locator});
+
+snippet    removeScript
+	$this->removeScript(${0:String scriptTagId});
+
+snippet    removeScriptAndWait
+	$this->removeScriptAndWait(${0:String scriptTagId});
+
+snippet    retrieveLastRemoteControlLogs
+	$this->retrieveLastRemoteControlLogs();
+
+snippet    shutDownSeleniumServer
+	$this->shutDownSeleniumServer();
+
+
+# Assertions
+############
+# NOTE: This Assertion is JAVA Selenium Package.
+#       PHPUnit '3.6.4' functions is not exists.
+#snippet    assertAlert()
+#	$this->assertAlert(${0:String pattern});
+
+#snippet    assertAlertNotPresent
+#alias       aAlertNotPresent
+#	$this->assertAlertNotPresent();
+
+#snippet    assertAlertPresent
+#alias       aAlertPresent
+#	$this->assertAlertPresent();
+
+#snippet    assertAllButtons
+#alias       aAllButtons
+#	$this->assertAllButtons(${0:String pattern});
+
+#snippet    assertAllFields
+#alias       aAllFields
+#	$this->assertAllFields(${0:String pattern});
+
+#snippet    assertAllLinks
+#alias       aAllLinks
+#	$this->assertAllLinks(${0:String pattern});
+
+
 
