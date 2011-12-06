@@ -1,0 +1,14 @@
+include phpunit.snip
+
+delete class
+
+snippet    class
+alias      TestClass, testClass, testclass
+	/**
+	 * ${1}
+	 */
+	class ${2:`expand('%:r')`} extends ${3:PHPUnit_Extensions_Story_TestCase}
+	{
+		${0:# code ...}
+	}
+

@@ -1,4 +1,25 @@
-include PHPUnit.snip
+include phpunit.snip
+
+delete class
+
+snippet    class
+alias      TestClass, testClass, testclass
+	/**
+	 * ${0}
+	 */
+	class ${1:`expand('%:r')`} extends ${2:PHPUnit_Extensions_Database_TestCase}
+	{
+		protected function getConnection()
+		{
+			${3:# code ...}
+		}
+
+		protected function getDataSet()
+		{
+			${4:# code ...}
+		}
+	}
+
 
 # Assertion
 

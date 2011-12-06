@@ -1,0 +1,58 @@
+Name:   Vim PHPUnit Snippets Plugin
+Author: Takuya Nishigori <nishigori.tak@gmail.com>
+
+Description:
+    vim-phpunit-snippets is Vim snippet files.
+
+Following famous snippet plugins:
+    neocomplcache(include in snippet)
+        vim.org: http://www.vim.org/scripts/script.php?script_id=2620
+        author's github: http://github.com/Shougo/neocomplcache
+    snipMate
+        vim.org: http://www.vim.org/scripts/script.php?script_id=2540
+        author's github: http://github.com/msanders/snipmate.vim
+
+Installation:
+    Extract the file and Put files in anywhere directory.
+    (more disirable, ~/.vim/ or Program Files/Vim/vimfiles on Windows)
+
+How to use:
+    This files is depends on snippets feature plugin in Vim.
+    You shoud be installed the snippet feature plugin.
+    (for exam, neocomplcache plugin, snipMate.vim plugin)
+
+    So, Write your putted directory setting your vimrc.
+
+    neocomplcache:
+        let g:neocomplcache_snippets_dir = '{your specified dir}'
+    snipMate:
+        let g:snippets_dir = '{your specified dir}'
+        (Sorry, It's not definitely. because I'm not use snipMate)
+
+    On version 0.1,
+    You have to define the filetype for PHPUnit.
+
+    [sample]
+
+    " .vimrc || ftdetect || ftplugin/php.vim, ftplugin/php/hoge.vim
+    au! BufRead,BufNewFile,BufWinEnter *Test.php
+          \ setfiletype php.phpunit
+    au! BufRead,BufNewFile,BufWinEnter *OutputTest.php
+          \ setfiletype php.phpunit_output_testcase
+    au! BufRead,BufNewFile,BufWinEnter *WebTest.php
+          \ setfiletype php.phpunit_selenium_testcase
+
+    if &filetype ~= 'phpunit'
+        " your specifed snippet dir
+        let g:neocomplcache_snippets_dir = 'hoge/vim-phpunit-snippets/snippets'
+    endif
+
+Future:
+    version 0.2~:
+
+    * Auto judge filetype for PHPUnit and PHPUnit Extensions.
+        let me see, Once you do not specify filetype & snippet dir :)
+    * Corresponding to each version for PHPUnit.
+        3.5, 3.6, 3.7 ...
+
+

@@ -1,17 +1,15 @@
-include PHPUnit.snip
+include phpunit.snip
 
-# http://pear.php.net/package/Testing_Selenium/docs/latest/li_Testing_Selenium.html
-# http://release.seleniumhq.org/selenium-remote-control/1.0-beta-2/doc/php/elementindex_Selenium.html
-# http://static.browsermob.com/api/com/browsermob/api/Selenium.html
+delete class
 
 ### PHPUnit_Extensions_SeleniumTestCase ###
 
 # Basic
 #######
 
-snippet     TestClass
+snippet     class
 abbr        Class extends PHPUnit_Extensions_SeleniumTestCase
-alias       testclass
+alias       TestClass, testClass, testclass
 	require_once 'PHPUnit/Extensions/SeleniumTestCase.php';
 	
 	/**
