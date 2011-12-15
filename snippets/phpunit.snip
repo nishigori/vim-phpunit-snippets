@@ -34,6 +34,7 @@ alias       function, fun
 	}
 
 # Fixtures
+##########
 
 snippet     setUp
 abbr        setUp fixture
@@ -66,7 +67,8 @@ snippet     teardownafterclass
 	}
 
 
-# PHPUnit Annotations
+# Annotations
+#############
 
 snippet     assert
 abbr        assert annotation
@@ -207,7 +209,8 @@ alias       @ticket
 	${0:# code ...}
 
 
-# PHPUnit Assertions
+# Assertions
+############
 
 snippet     aArrayHasKey
 abbr        assertArrayHasKey
@@ -618,5 +621,30 @@ snippet     aXmlStringNotEqualsXmlString
 abbr        assertXmlStringNotEqualsXmlString
 alias       assertXmlStringNotEqualsXmlString
 	$this->assertXmlStringNotEqualsXmlString(${1:expectedXml}, ${2:actualXml});
+
+
+# Mock, Stub
+############
+snippet     getMock
+abbr        PHPUnit can act as a test double for the specified original class
+alias       getmock
+	$stub = $this->getMock(${0:String className});
+
+snippet     mock
+alias       mockFull, mockfull
+	$stub = $this->getMock(${1:String $originalClassName}, ${2:$methods = array()}, ${3:$arguments = array()}, ${4:$mockClassName = ''}, ${5:$callOriginalConstructor = TRUE}, ${6:$callOriginalClone = TRUE}, ${7:$callAutoload = TRUE});
+
+snippet     getMockBuilder
+	$stub = $this->getMockBuilder(${0:String $originalClassName})
+		->getMock();
+
+snippet     mockbuilder
+alias       mockBuilder, MockBuilder, mockbuilderfull
+	$stub = $this->getMockBuilder(${0:String $originalClassName})
+		->disableOriginalConstructor()
+		->getMock();
+
+
+
 
 # Incomplete and Skipped tests
