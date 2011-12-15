@@ -576,8 +576,8 @@ snippet    waitForCondition
 # PHPUnit '3.6.4'
 # funtion is nox exist 'waitForFrameToLoad'
 # INFO: Runs the specified JavaScript snippet repeatedly until it evaluates to "true"
-snippet    waitForFrameToLoad
-	$this->waitForFrameToLoad(${1:String script}, ${2:String timeout});
+#snippet    waitForFrameToLoad
+#	$this->waitForFrameToLoad(${1:String script}, ${2:String timeout});
 
 snippet    fireEvent
 	$this->fireEvent(${1:String locator}, ${2:String eventName});
@@ -716,7 +716,6 @@ snippet    addScriptAndWait
 
 snippet    attachFile
 	$this->attachFile(${1:String fieldLocator}, ${2:String fileLocator});
-
 
 
 # Accessors
@@ -923,6 +922,5 @@ snippet    shutDownSeleniumServer
 #snippet    assertAllLinks
 #alias       aAllLinks
 #	$this->assertAllLinks(${0:String pattern});
-
 
 
