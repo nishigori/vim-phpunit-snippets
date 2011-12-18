@@ -1,7 +1,8 @@
 include php.snip
 
+# Basic
+##########
 delete class
-
 snippet     class
 abbr        Class extends PHPUnit_Framework_TestCase
 alias       TestClass, testClass, testclass
@@ -10,21 +11,28 @@ alias       TestClass, testClass, testclass
 	 */
 	class ${2:`expand("%:r")`} extends ${3:PHPUnit_Framework_TestCase}
 	{
-		${0:# code...}
+		protected function setUp()
+		{
+			${0:code ...}
+		}
 	}
+
+delete this
+snippet this
+alias   $this
+	$this->
 
 snippet     testfunc
 alias       testfunction, testFunc, testfun
 	/**
 	 * @test
 	 */
-	public function ${1:test name}()
+	public function ${1:name}()
 	{
 		${0:# code...}
 	}
 
 delete func
-
 snippet     func
 abbr        function
 alias       function, fun
@@ -33,21 +41,56 @@ alias       function, fun
 		${0:# code...}
 	}
 
-# Fixtures
-##########
+
+# Template Methods
+##################
+snippet     setUpBeforeClass
+abbr        setUpBeforeClass fixture
+alias       setupbeforeclass
+	protected function setUpBeforeClass()
+	{
+		${0:# code ...}
+	}
 
 snippet     setUp
 abbr        setUp fixture
+alias       setup
 	protected function setUp()
 	{
 		${0:# code...}
 	}
 
-snippet     setUpBeforeClass
-abbr        setUpBeforeClass fixture
-	protected function setUpBeforeClass()
+snippet     assertPreConditions
+abbr        called before the execution of a test starts
+alias       aPreConditions, assertpreconditions
+	protected function assertPreConditions()
 	{
-		${0:# code ...}
+		${0:# code...}
+	}
+
+snippet     testOne
+alias       testone
+prev_word   '^'
+	protected function testOne()
+	{
+		${0:# code...}
+	}
+
+snippet     testTwo
+alias       testtwo
+prev_word   '^'
+	protected function testTwo()
+	{
+		${0:# code...}
+	}
+
+snippet     assertPostConditions
+abbr        called before the execution of a test ends
+alias       aPostConditions, assertpostconditions
+prev_word   '^'
+	protected function assertPostConditions()
+	{
+		${0:# code...}
 	}
 
 snippet     tearDown
@@ -64,6 +107,16 @@ snippet     teardownafterclass
 	protected function tearDownAfterClass()
 	{
 		${0:# code ...}
+	}
+
+snippet     onNotSuccessfulTest
+abbr        called when a test method did not execute successfully
+alias       onnotsuccessfultest
+prev_word   '^'
+	protected function onNotSuccessfulTest(${1:Exception $e})
+	{
+		${0:# code...}
+		throw $e;
 	}
 
 
